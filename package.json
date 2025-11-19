@@ -1,0 +1,32 @@
+{
+  "name": "hunger",
+  "version": "1.0.0",
+  "description": "This is Mahima's Food App",
+  "keywords": [],
+  "homepage": "https://github.com/msyande/hunger#readme",
+  "bugs": {
+    "url": "https://github.com/msyande/hunger/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msyande/hunger.git"
+  },
+  "license": "ISC",
+  "author": "Mahima Yande",
+  "type": "commonjs",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.1"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "browserlist": [
+    "last 2 version"
+  ]
+}
