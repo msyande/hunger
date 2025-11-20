@@ -1,47 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-const Header = () => {
-  return (
-    <div className="header">
-      <div className="logo-container">
-        <img
-          className="logo"
-          src="https://media.istockphoto.com/id/2161801122/vector/marker-pin-with-illustration-of-pouring-loving-kindness-into-a-bowl-held-by-a-hand.jpg?s=612x612&w=0&k=20&c=AxvAuYnUM1axo8EMt0EP3l9xj0zab2E6-PsEe5V-VtY="
-        />
-      </div>
-      <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-const RestaurantCard = (props) => {
-  const { restaurantData } = props;
-  return (
-    <div className="res-card">
-      <img
-        className="res-img"
-        src={
-          "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/RX_THUMBNAIL/IMAGES/VENDOR/2025/" +
-          restaurantData.image
-        }
-      />
-      <h3>{restaurantData.resName}</h3>
-      <h4>{restaurantData.cuisine.join(",")}</h4>
-      <h4>⭐️ {restaurantData.rating}</h4>
-      <h4>{restaurantData.time}</h4>
-    </div>
-  );
-};
-
-const restaurantList = [
+export const restaurantList = [
   {
     id: 1,
     resName: "Pizza Hut",
@@ -54,7 +11,7 @@ const restaurantList = [
     id: 2,
     resName: "KFC",
     cuisine: ["Burger", "Fast Food"],
-    rating: "4.0",
+    rating: "3.8",
     time: "25-30 mins",
     image: "10/17/dac7f90b-c345-42d4-b6ad-0c02eee029bb_484594.JPG",
   },
@@ -62,7 +19,7 @@ const restaurantList = [
     id: 3,
     resName: "Madhuram",
     cuisine: ["South Indian", "Asian"],
-    rating: "4.7",
+    rating: "3.9",
     time: "45 mins",
     image: "1/11/620a0d11-cf6a-4df6-b5c7-7a25e3f6b504_1024838.jpg",
   },
@@ -78,7 +35,7 @@ const restaurantList = [
     id: 5,
     resName: "Burger King",
     cuisine: ["Burger", "Fast Food"],
-    rating: "4.3",
+    rating: "3.5",
     time: "30-35 mins",
     image: "6/18/8021373a-e4e9-4780-b502-59d621ee2c7b_78036.jpg",
   },
@@ -139,28 +96,3 @@ const restaurantList = [
     image: "7/15/6660041b-ee37-4278-a711-412a0ffed6f4_676001.JPG",
   },
 ];
-
-//not using keys (not acceptable) <<<<<< index as key <<<<<<<<<<< unique id(manually) (best practice)
-const Body = () => {
-  return (
-    <div className="body">
-      <div className="search">Search</div>
-      <div className="res-container">
-        {restaurantList.map((restaurant) => (
-          <RestaurantCard key={restaurant.id} restaurantData={restaurant} />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const AppLayout = () => {
-  return (
-    <div className="app">
-      <Header />
-      <Body />
-    </div>
-  );
-};
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);

@@ -45,3 +45,7 @@
 .res-card > h4 {
   margin: 5px 0px;
 }
+.filter-btn {
+  margin: 10px;
+  cursor: pointer;
+}
