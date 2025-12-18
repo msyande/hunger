@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   //Local Stste variable - Super powerful variable
@@ -13,14 +14,13 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://corsproxy.io/https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.4055741&lng=72.8557411&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://corsproxy.io/https://namastedev.com/api/v1/listRestaurants"
     );
     const json = await data.json();
-    console.log(json.data.cards);
 
     //optional chaining
     const restaurants =
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      json?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     setListOfRestaurants(restaurants);
     setInitialListOfRestaurants(restaurants);
@@ -65,10 +65,12 @@ const Body = () => {
       <div className="res-container">
         {listOfRestaurants.map((restaurant) => (
           //not using keys (not acceptable) <<<<<< index as key <<<<<<<<<<< unique id(manually) (best practice)
-          <RestaurantCard
+          <Link
+            to={"/restaurant/" + restaurant?.info.id}
             key={restaurant?.info.id}
-            restaurantData={restaurant?.info}
-          />
+          >
+            <RestaurantCard restaurantData={restaurant?.info} />
+          </Link>
         ))}
       </div>
     </div>
