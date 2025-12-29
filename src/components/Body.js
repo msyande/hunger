@@ -39,15 +39,16 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="flex">
+        <div className="m-4 p-4">
           <input
             type="text"
-            className="serch-box"
+            className="border border-solid border-black"
             onChange={(e) => setSearchText(e.target.value)}
             value={searchText}
           />
           <button
+            className="px-4 py-2 bg-green-100 m-4 rounded-lg"
             onClick={() => {
               //Filter the restaurant cards and update the UI
               const filteredRes = initialListOfRestaurants.filter((res) =>
@@ -59,18 +60,20 @@ const Body = () => {
             Search
           </button>
         </div>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            setListOfRestaurants(
-              listOfRestaurants.filter((res) => res?.info.avgRating > 4.4)
-            );
-          }}
-        >
-          Top Rated Restaurants
-        </button>
+        <div className="m-4 p-4">
+          <button
+            className="px-4 py-2 bg-gray-100 m-4 rounded-lg"
+            onClick={() => {
+              setListOfRestaurants(
+                listOfRestaurants.filter((res) => res?.info.avgRating > 4.4)
+              );
+            }}
+          >
+            Top Rated Restaurants
+          </button>
+        </div>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {listOfRestaurants.map((restaurant) => (
           //not using keys (not acceptable) <<<<<< index as key <<<<<<<<<<< unique id(manually) (best practice)
           <Link
