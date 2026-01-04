@@ -1,4 +1,5 @@
 import React from "react";
+import UserContext from "../utils/UserContext";
 
 class UserClass extends React.Component {
   //to accept props and to create state variable in class component
@@ -15,7 +16,6 @@ class UserClass extends React.Component {
     //API call
     const data = await fetch("https://api.github.com/users/msyande");
     const json = await data.json();
-    console.log(json);
     this.setState({
       userInfo: json,
     });
@@ -27,6 +27,12 @@ class UserClass extends React.Component {
     return (
       <div className="user-card">
         <img src={this.state.userInfo.avatar_url} />
+        <div>
+          Logged in User:{" "}
+          <UserContext.Consumer>
+            {({ loggedInUser }) => loggedInUser}
+          </UserContext.Consumer>
+        </div>
         <h2>User: {login}</h2>
         <h3>Blog: {blog}</h3>
         <h4>Contact: mahima.yande21@gmail.com</h4>
