@@ -5,10 +5,13 @@ import Body from "./components/Body";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
+import Cart from "./components/Cart";
 // import Grocery from "./components/Grocery";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/redux/appStore";
 
 const AppLayout = () => {
   const [userName, setUserName] = useState();
@@ -22,14 +25,16 @@ const AppLayout = () => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ loggedInUser: userName }}>
-      {/* we can update the userName from any child component */}
-      {/* <UserContext.Provider value={{ loggedInUser: userName , setUserName }}> */}
-      <div className="app">
-        <Header />
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userName }}>
+        {/* we can update the userName from any child component */}
+        {/* <UserContext.Provider value={{ loggedInUser: userName , setUserName }}> */}
+        <div className="app">
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -51,6 +56,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
       {
         path: "/grocery",
